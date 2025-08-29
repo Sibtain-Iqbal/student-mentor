@@ -1,14 +1,30 @@
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
+// import { Navbar } from './Components/Navbar/Navbar'
+import LandPage from './Pages/LandingPage/LandPage'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { AuthModal } from './auth/Auth'
 
 function App() {
- return(
-  <>
-  
-  <h1 className='text-4xl text-center text-bold text-green-300 mt-8'>Student Mentor</h1>
-  
-  </>
- )
+  const queryclient = new QueryClient()
+  return (
+    <>
+      <QueryClientProvider client={queryclient}>
+
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<LandPage />} />
+            <Route path='/auth' element={<AuthModal />} />
+
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
+
+
+
+    </>
+  )
 }
 
 export default App
